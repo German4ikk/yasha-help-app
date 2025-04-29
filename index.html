@@ -310,6 +310,27 @@
             border-radius: 10px;
             margin-bottom: 15px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            object-fit: cover; /* Добавлено для корректного масштабирования видео */
+        }
+
+        .tiktok-error {
+            display: none;
+            color: #4a5568;
+            font-size: 15px;
+            margin-bottom: 15px;
+            background: #f8fafc;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .tiktok-error a {
+            color: #3a7bd5;
+            text-decoration: none;
+        }
+
+        .tiktok-error a:hover {
+            text-decoration: underline;
         }
 
         .tiktok-btn {
@@ -584,22 +605,22 @@
             </div>
         </div>
 
-        <       <div class="tiktok-section">
-    <h3>Следите за прогрессом Яши!</h3>
-    <p style="color: #4a5568; margin-bottom: 15px;">Смотрите ежедневные обновления в нашем TikTok</p>
-    <video class="tiktok-video" controls preload="metadata" poster="tiktok_preview.jpg">
-        <source src="tiktok_video.mp4" type="video/mp4">
-        <div id="tiktok-error" class="tiktok-error">
-            Ваш браузер не поддерживает видео. <a href="https://www.tiktok.com/@your_tiktok_handle" target="_blank">Смотрите в TikTok</a>
+        <div class="tiktok-section">
+            <h3>Следите за прогрессом Яши!</h3>
+            <p style="color: #4a5568; margin-bottom: 15px;">Смотрите ежедневные обновления в нашем TikTok</p>
+            <video class="tiktok-video" controls preload="metadata" poster="tiktok_preview.jpg" muted>
+                <source src="tiktok_video.mp4" type="video/mp4">
+                <div id="tiktok-error" class="tiktok-error">
+                    Ваш браузер не поддерживает видео. <a href="https://www.tiktok.com/@your_tiktok_handle" target="_blank">Смотрите в TikTok</a>
+                </div>
+            </video>
+            <a href="https://www.tiktok.com/@your_tiktok_handle" target="_blank" class="tiktok-btn">
+                <svg class="tiktok-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.5 15.5C16.22 15.77 15.85 16 15.43 16C14.93 16 14.5 15.85 14.14 15.5C13.5 14.86 13.5 13.86 14.14 13.22C14.5 12.86 14.93 12.71 15.43 12.71C15.85 12.71 16.22 12.94 16.5 13.21V10.5C16.5 10.22 16.72 10 17 10C17.28 10 17.5 10.22 17.5 10.5V14.5C17.5 15.05 17.05 15.5 16.5 15.5ZM10.5 15.5C10.22 15.77 9.85 16 9.43 16C8.93 16 8.5 15.85 8.14 15.5C7.5 14.86 7.5 13.86 8.14 13.22C8.5 12.86 8.93 12.71 9.43 12.71C9.85 12.71 10.22 12.94 10.5 13.21V8.5C10.5 8.22 10.72 8 11 8C11.28 8 11.5 8.22 11.5 8.5V14.5C11.5 15.05 11.05 15.5 10.5 15.5Z" fill="white"/>
+                </svg>
+                Перейти в TikTok
+            </a>
         </div>
-    </video>
-    <a href="https://www.tiktok.com/@your_tiktok_handle" target="_blank" class="tiktok-btn">
-        <svg class="tiktok-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.5 15.5C16.22 15.77 15.85 16 15.43 16C14.93 16 14.5 15.85 14.14 15.5C13.5 14.86 13.5 13.86 14.14 13.22C14.5 12.86 14.93 12.71 15.43 12.71C15.85 12.71 16.22 12.94 16.5 13.21V10.5C16.5 10.22 16.72 10 17 10C17.28 10 17.5 10.22 17.5 10.5V14.5C17.5 15.05 17.05 15.5 16.5 15.5ZM10.5 15.5C10.22 15.77 9.85 16 9.43 16C8.93 16 8.5 15.85 8.14 15.5C7.5 14.86 7.5 13.86 8.14 13.22C8.5 12.86 8.93 12.71 9.43 12.71C9.85 12.71 10.22 12.94 10.5 13.21V8.5C10.5 8.22 10.72 8 11 8C11.28 8 11.5 8.22 11.5 8.5V14.5C11.5 15.05 11.05 15.5 10.5 15.5Z" fill="white"/>
-        </svg>
-        Перейти в TikTok
-    </a>
-</div>
 
         <footer>
             <p>Все собранные средства пойдут непосредственно на помощь Яше.</p>
@@ -640,6 +661,30 @@
                 window.open('https://www.paypal.me/VLADIMIRUUEMAA', '_blank');
             });
         }
+
+        // Автозапуск видео при прокрутке до него
+        document.addEventListener('DOMContentLoaded', () => {
+            const video = document.querySelector('.tiktok-video');
+            if (video) {
+                const observer = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                video.play().catch((err) => {
+                                    console.error('Ошибка автозапуска:', err);
+                                });
+                            } else {
+                                video.pause();
+                            }
+                        });
+                    },
+                    {
+                        threshold: 0.5 // Запуск, когда 50% видео видно
+                    }
+                );
+                observer.observe(video);
+            }
+        });
     </script>
 </body>
 </html>
